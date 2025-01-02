@@ -1,0 +1,38 @@
+.state-container {
+  padding: 10px 100px;
+  background-color: #161625;
+  color: aliceblue;
+}
+.state-container-name {
+  background-color: #0284c729;
+  color: #0ea5e9;
+  font-size: 20px;
+  width: 200px;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+.state-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: end;
+}
+.specific-state-container {
+  background-color: #161625;
+}
+.districts-items {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 100px;
+}
+.district-item {
+  display: flex;
+  width: 250px;
+  gap: 20px;
+  color: white;
+}
+.district-heading {
+  margin-left: 100px;
+  color: red;
+}

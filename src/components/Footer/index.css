@@ -1,0 +1,17 @@
+.footer-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
+}
+.icons {
+  display: flex;
+  gap: 50px;
+}

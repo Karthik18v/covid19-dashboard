@@ -1,7 +1,10 @@
 import {Component} from 'react'
 import {IoSearch} from 'react-icons/io5'
 import {Link} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
+import Footer from '../Footer'
 import Header from '../Header'
+import Stats from '../Stats'
 import './index.css'
 
 const statesList = [
@@ -154,6 +157,7 @@ const statesList = [
 class Home extends Component {
   state = {
     stateWiseData: [],
+    loading: true,
   }
 
   componentDidMount() {
@@ -202,11 +206,17 @@ class Home extends Component {
     const response = await fetchedData.json()
     console.log(response)
     const data = this.convertObjectsDataIntoListItemsUsingForInMethod(response)
-    this.setState({stateWiseData: data})
+    this.setState({stateWiseData: data, loading: false})
   }
 
+  renderLoaderView = () => (
+    <div>
+      <Loader type="CradleLoader" />
+    </div>
+  )
+
   render() {
-    const {stateWiseData} = this.state
+    const {stateWiseData, loading} = this.state
     const totalConfirms = stateWiseData.reduce(
       (accumalator, eachState) => accumalator + eachState.confirmed,
       0,
@@ -256,71 +266,72 @@ class Home extends Component {
     return (
       <div className="home-container">
         <Header />
-        <div className="main">
-          <div className="search-bar">
-            <IoSearch size="20" />
-            <input
-              className="search-input"
-              type="text"
-              placeholder="Enter state"
+        {!loading ? (
+          <>
+            <div className="main">
+              <div className="search-bar">
+                <IoSearch size="20" />
+                <input
+                  className="search-input"
+                  type="text"
+                  placeholder="Enter state"
+                />
+              </div>
+            </div>
+            <Stats caseDetails={caseDetails} />
+            <table
+              border="1"
+              style={{
+                width: '1146px',
+                height: '2080px',
+                textAlign: 'left',
+                marginLeft: '150px',
+                borderRadius: '15px',
+              }}
+            >
+              <thead>
+                <tr>
+                  <th>States/UT</th>
+                  <th>Confirmed</th>
+                  <th>Active</th>
+                  <th>Recovered</th>
+                  <th>Deceased</th>
+                  <th>Population</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stateWiseData.map(eachState => (
+                  <tr className="table-row">
+                    <td className="table-state-name">
+                      <Link
+                        to={`/state/${eachState.stateCode}`}
+                        style={{textDecoration: 'none', color: 'white'}}
+                      >
+                        {eachState.stateName}
+                      </Link>
+                    </td>
+                    <td className="confirmed-cases">{eachState.confirmed}</td>
+                    <td className="active-cases">{eachState.active}</td>
+                    <td className="recovered-cases">{eachState.recovered}</td>
+                    <td className="deceased-cases">{eachState.deceased}</td>
+                    <td className="population">{eachState.population}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <Footer />
+          </>
+        ) : (
+          <div className="loader-container">
+            <Loader
+              className="loader"
+              type="Oval"
+              color="white"
+              height={60}
+              width={50}
             />
           </div>
-        </div>
-        <ul className="case-details-container">
-          {caseDetails.map(each => (
-            <li key={each.id} style={{color: each.color}}>
-              <div className="case-details-items">
-                <p className="case-details-heading">{each.heading}</p>
-                <img
-                  className="case-image"
-                  src={each.imageUrl}
-                  alt={each.heading}
-                />
-                <p className="case-details-number">{each.number}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <table
-          border="1"
-          style={{
-            width: '80%',
-            textAlign: 'left',
-            margin: 'auto',
-            borderRadius: '15px',
-          }}
-        >
-          <thead>
-            <tr>
-              <th>States/UT</th>
-              <th>Confirmed</th>
-              <th>Active</th>
-              <th>Recovered</th>
-              <th>Deceased</th>
-              <th>Population</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stateWiseData.map(eachState => (
-              <tr className="table-row">
-                <td>
-                  <Link
-                    to={`/state/${eachState.stateCode}`}
-                    style={{textDecoration: 'none', color: 'white'}}
-                  >
-                    {eachState.stateName}
-                  </Link>
-                </td>
-                <td>{eachState.confirmed}</td>
-                <td>{eachState.active}</td>
-                <td>{eachState.recovered}</td>
-                <td>{eachState.deceased}</td>
-                <td>{eachState.population}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        )}
       </div>
     )
   }

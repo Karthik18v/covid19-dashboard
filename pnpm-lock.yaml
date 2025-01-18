@@ -6,6 +6,7 @@ specifiers:
   '@testing-library/user-event': 12.6.2
   '@wojtekmaj/enzyme-adapter-react-17': 0.6.3
   chalk: 4.1.0
+  chart.js: 4.4.7
   enzyme: 3.11.0
   eslint-config-airbnb: 18.2.1
   eslint-config-prettier: 8.1.0
@@ -18,6 +19,7 @@ specifiers:
   npm-run-all: 4.1.5
   prettier: 2.2.1
   react: 17.0.1
+  react-chartjs-2: 5.3.0
   react-dom: 17.0.1
   react-icons: 4.3.1
   react-loader-spinner: 4.0.0
@@ -32,11 +34,13 @@ dependencies:
   '@testing-library/user-event': 12.6.2
   '@wojtekmaj/enzyme-adapter-react-17': 0.6.3_ed988ebff08079c40ff9e87e2acc78b3
   chalk: 4.1.0
+  chart.js: 4.4.7
   enzyme: 3.11.0
   history: 5.0.1
   js-cookie: 3.0.1
   msw: 0.35.0
   react: 17.0.1
+  react-chartjs-2: 5.3.0_chart.js@4.4.7+react@17.0.1
   react-dom: 17.0.1_react@17.0.1
   react-icons: 4.3.1_react@17.0.1
   react-loader-spinner: 4.0.0_react-dom@17.0.1+react@17.0.1
@@ -1899,6 +1903,10 @@ packages:
       '@types/node': 16.11.6
       '@types/yargs': 16.0.4
       chalk: 4.1.2
+    dev: false
+
+  /@kurkle/color/0.3.4:
+    resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
     dev: false
 
   /@mswjs/cookies/0.1.6:
@@ -3823,6 +3831,13 @@ packages:
 
   /chardet/0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
+    dev: false
+
+  /chart.js/4.4.7:
+    resolution: {integrity: sha512-pwkcKfdzTMAU/+jNosKhNL2bHtJc/sSmYgVbuGTEDhzkrhmyihmP7vUc/5ZK9WopidMDHNe3Wm7jOd/WhuHWuw==}
+    engines: {pnpm: '>=8'}
+    dependencies:
+      '@kurkle/color': 0.3.4
     dev: false
 
   /check-types/11.1.2:
@@ -10260,6 +10275,16 @@ packages:
       regenerator-runtime: 0.13.9
       whatwg-fetch: 3.6.2
     dev: true
+
+  /react-chartjs-2/5.3.0_chart.js@4.4.7+react@17.0.1:
+    resolution: {integrity: sha512-UfZZFnDsERI3c3CZGxzvNJd02SHjaSJ8kgW1djn65H1KK8rehwTjyrRKOG3VTMG8wtHZ5rgAO5oTHtHi9GCCmw==}
+    peerDependencies:
+      chart.js: ^4.1.1
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    dependencies:
+      chart.js: 4.4.7
+      react: 17.0.1
+    dev: false
 
   /react-dev-utils/11.0.4:
     resolution: {integrity: sha512-dx0LvIGHcOPtKbeiSUM4jqpBl3TcY7CDjZdfOIcKeznE7BWr9dg0iPG90G5yfVQ+p/rGNMXdbfStvzQZEVEi4A==}

@@ -1,0 +1,45 @@
+.case-details-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  width: 979px;
+  top: 328px;
+  margin-left: 200px;
+  height: 142px;
+}
+.case-details-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+}
+.case-image {
+  height: 18px;
+  width: 18px;
+}
+.case-details-heading {
+  font-size: 12px;
+}
+.case-details-number {
+  font-size: 14px;
+}
+.case-details-items {
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 100px;
+}
+.active-confirmed {
+  background-color: #331427;
+}
+.active-active {
+  background-color: #132240;
+}
+
+.active-recovered {
+  background-color: #182829;
+}
+
+.active-deceased {
+  background-color: #212230;
+}
